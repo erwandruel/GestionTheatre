@@ -12,24 +12,30 @@ import java.util.*;
  */
 public class Representation {
     
-    private static int nbrepresentation;
+    private static int n;
+    private int nbrepresentation;
     private Date datedebut;
     private Date datefin;
     private Spectacle represente;
     private Salle possede;
     
-    public Representation(Date dated, Date datef, Spectacle rep, Salle poss)
+    public Representation(Date datede, Date datefi, Spectacle repr, Salle poss)
     {
-        nbrepresentation++;
-        datedebut = dated;
-        datefin = datef;
-        represente = rep;
+        n++;
+        nbrepresentation=n;
+        datedebut = datede;
+        datefin = datefi;
+        represente = repr;
         possede = poss;
     }
 
-    
-    public static int getNbrepresentation() {
+    public int getNbrepresentation()
+    {
         return nbrepresentation;
+    }
+    public static int getN()
+    {
+        return n;
     }
     
     public Date getDatedebut() {

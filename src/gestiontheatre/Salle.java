@@ -13,9 +13,10 @@ public class Salle {
     
     private String nom;
     private String adresse;
+    private String ville;
     private int capacite;
     
-    public Salle(String nm, String ad, int cap)
+    public Salle(String nm, String ad, String v, int cap)
     {
         nom = nm;
         adresse = ad;
@@ -34,6 +35,10 @@ public class Salle {
         return capacite;
     }
 
+    public String getVille() {
+        return ville;
+    }
+    
     
     public void setNom(String nom) {
         this.nom = nom;
@@ -46,5 +51,10 @@ public class Salle {
     public void setCapacite(int capacite) {
         this.capacite = capacite;
     }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+    
     
 }
