@@ -15,14 +15,16 @@ public class Place {
     private String categorie;
     private String emplacement;
     private Salle compose;
+    private int nombre; //Rajout de nb pour la méthode modifierreservation pour rajouter un nouveau nombre de place, but dont work
     // Peut-être intégrer la classe Reservation ??? //
     
-    public Place(float p, String cat, String emp, Salle comp)
+    public Place(float p, String cat, String emp, Salle comp, int nb)
     {
         prix = p;
         categorie = cat;
         emplacement = emp;
         compose = comp;
+        nombre = nb;
     }
 
     public float getPrix() {
@@ -41,6 +43,11 @@ public class Place {
         return compose;
     }
 
+    public int getNombre() {
+        return nombre;
+    }
+
+    
     public void setPrix(float prix) {
         this.prix = prix;
     }
@@ -55,6 +62,10 @@ public class Place {
 
     public void setCompose(Salle compose) {
         this.compose = compose;
+    }
+
+    public void setNombre(int nombre) {
+        this.nombre = nombre;
     }
      
 }

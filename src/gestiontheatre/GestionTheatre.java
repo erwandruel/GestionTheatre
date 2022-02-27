@@ -95,7 +95,8 @@ public class GestionTheatre {
     public void modifiermdp()
     {
         String ancienmdp, nouveaumdp;
-        boolean b; Personne p; Client c;
+        Personne p; Client c;
+        
         System.out.println("Quel est l'ancien mot de passe ?");
         ancienmdp=Clavier.lireString();
         
@@ -114,7 +115,7 @@ public class GestionTheatre {
     
     public void creerreservation()
     {
-        String nom, adresse;
+        String nom, adresse; Place liee;
         Reservation r; Place p;
         
         System.out.println("Quel est le nom de la réservation ?");
@@ -131,10 +132,10 @@ public class GestionTheatre {
     
     public void modifierreservation()
     {
+        Reservation r; Place p; Personne P; Client c; 
         String ancienneresa, nouvelleresa;
-        String nom, rep;
-        Personne P; Client c; 
-        Reservation r; Place ;
+        String nom;
+        int rep;
         
         System.out.println("Quel est le nom de la réservation à modifier ?");
         nom=Clavier.lireString();
@@ -150,12 +151,12 @@ public class GestionTheatre {
             r=listereservation.get(listereservation.size()-1);
         }
             System.out.println("Combien de places voulez-vous dans votre nouvelle réservation ?");
-            rep=Clavier.lireString();
+            rep=Clavier.lireInt();
             
-            if(!rep.equals(p))
-        {
-            r.setLiee(rep);
-        }
+            if(!rep.equals(nb))
+            {
+                r.setLiee().setNombre(rep);
+            }
         else
         {
             menu();
@@ -163,7 +164,7 @@ public class GestionTheatre {
         
     }
     
-    Reservation rechercherreservation(String nm)
+    Reservation rechercherreservation(String adresse)
     {
         int i = 0; Reservation r, trouve = null;
         
@@ -172,7 +173,7 @@ public class GestionTheatre {
             while(i<listereservation.size() && trouve == null)
             {
                 r=listereservation.get(i);
-                if(r.getNom().equalsIgnoreCase(nm))
+                if(r.getNom().equalsIgnoreCase(adresse))
                 {
                     trouve= r;
                 }

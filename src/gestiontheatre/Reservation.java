@@ -15,7 +15,8 @@ public class Reservation {
     private String nom;
     private String adresse;
     private Place liee;
-    // Il manque sûrement plusieurs classes à intégrer ici tel que Client et ou Place //
+    // Il manque sûrement plusieurs classes à intégrer ici tel que Client et/ou Prix mais vue qu'il y a place ça devrait être bon 
+    //pour le prix je sais pas je comprend pas//
 
     public Reservation(String nm, String ad, Place liee)
     {
