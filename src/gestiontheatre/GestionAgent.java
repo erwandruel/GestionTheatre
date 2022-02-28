@@ -382,14 +382,14 @@ public Representation creercategorierepresentation()
     {
         String lib; double prx;
         Categorie c;
-        Salle poss = null;
+        Place diff = null;
    
             System.out.println("Quel est le libellé de la catégorie ?");
             lib=Clavier.lireString();
             System.out.println("Quelle est le prix de cette catégorie ?");
             prx=Clavier.lireDouble();
 
-            c= new Categorie(lib, prx, poss); 
+            c= new Categorie(lib, prx, diff); 
             listecategorie.add(c);     
     }
 }

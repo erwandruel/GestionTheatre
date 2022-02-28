@@ -13,13 +13,13 @@ public class Categorie {
     
     private String libelle;
     private double prix;
-    private Salle possede;
+    private Place differenciee;
     
-    public Categorie(String lib, double prx, Salle poss)
+    public Categorie(String lib, double prx, Place diff)
     {
         libelle = lib;
         prix = prx;
-        possede = poss;
+        differenciee = diff;
     }
 
     public String getLibelle() {
@@ -30,9 +30,10 @@ public class Categorie {
         return prix;
     }
 
-    public Salle getPossede() {
-        return possede;
+    public Place getDifferenciee() {
+        return differenciee;
     }
+
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
@@ -42,8 +43,11 @@ public class Categorie {
         this.prix = prix;
     }
 
-    public void setPossede(Salle possede) {
-        this.possede = possede;
+    public void setDifferenciee(Place differenciee) {
+        this.differenciee = differenciee;
     }
-    
+
+    boolean equalsIgnoreCase(String nm) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
