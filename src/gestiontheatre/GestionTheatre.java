@@ -106,9 +106,11 @@ public class GestionTheatre {
         if(!nouveaumdp.equals(ancienmdp))
         {
             c.setMotdepasse(nouveaumdp);
+            // Etant donné que le nouveau mot de passe n'est pas égal à l'ancien, alors on modifie le mot de passe. 
         }
         else
         {
+            System.out.println("Votre mot de passe est identique à l'ancien, veuillez réessayer");
             menu();
         }
     }
@@ -116,18 +118,24 @@ public class GestionTheatre {
     public void creerreservation()
     {
         String nom, adresse; Place liee;
-        Reservation r; Place p;
+        Reservation r; 
+        String prm;
+        int numero;
         
         System.out.println("Quel est le nom de la réservation ?");
         nom=Clavier.lireString();
         System.out.println("Quelle est l'adresse du client ?");
         adresse=Clavier.lireString();
         System.out.println("Quelle est le prénom du client ?");
-        System.out.println(p.getPrix());
-        r=new Reservation(nom,adresse,liee);
+        prm=Clavier.lireString();
+        
+        System.out.println(liee.getPrix());
+        
+        System.out.println("Saisir le numéro de la place à réserver");
+        numero=Clavier.lireInt();
+        
         listereservation.add(r);
-        //Il manque des choses dans Reservation donc méthode incomplète 
-        //+ Je ne sais pas comment intégrer le prix et la place 
+        // Je ne sais pas comment intégrer le prix et la place 
     }  
     
     public void modifierreservation()
@@ -135,7 +143,8 @@ public class GestionTheatre {
         Reservation r; Place p; Personne P; Client c; 
         String ancienneresa, nouvelleresa;
         String nom;
-        int rep;
+        int rep; 
+        int nb;
         
         System.out.println("Quel est le nom de la réservation à modifier ?");
         nom=Clavier.lireString();
@@ -153,9 +162,9 @@ public class GestionTheatre {
             System.out.println("Combien de places voulez-vous dans votre nouvelle réservation ?");
             rep=Clavier.lireInt();
             
-            if(!rep.equals(nb))
+            if(rep != nb) // Si le nouveau nombre de réservation est différent alors on modifie la réservation pour avoir le nouveau nombre de places
             {
-                r.setLiee().setNombre(rep);
+                r.setLiee().setNombre(rep); //Modification du nombre de placé reservé dans la réservation
             }
         else
         {
@@ -232,4 +241,133 @@ public class GestionTheatre {
         th.menu();
     }
    
+              
+public Representation rechercherrepresentation(String nom)
+    { 
+        Spectacle represente;
+    
+        Representation repre, trouve = null;
+        int i=0;
+
+        System.out.println("Saisissez le nom du spectacle à rechercher");
+        nom=Clavier.lireString();
+
+        if (!listerepresentation.isEmpty())
+    {
+        while (i<listerepresentation.size() && trouve == null)
+        
+    {
+        repre=listerepresentation.get(i);
+        if(repre.getRepresente().getNom().equalsIgnoreCase(nom))
+    
+        {
+        trouve = repre;
+        } 
+    i++;
+    }
+}
+return trouve;
+
+}
+
+public Representation afficherrepresentationspec() //Java Français :
+        /*
+        
+        */
+{
+    
+        Representation repre;
+        Spectacle represente = null;
+        int i=;
+        String Spectacle;
+        
+    repre=rechercherrepresentation(String nom);
+    
+    if(repre!=null)
+{
+    System.out.println("Ce spectacle n'existe pas");
+}
+    else
+    {
+        if (!listerepresentation.isEmpty())
+        {
+            for (i=0;i<listerepresentation.size();i++)
+        {
+        repre=listerepresentation.get(i);
+
+    if (represente.getRepresente().equalsIgnoreCase(repre))
+    {
+        System.out.println("Afficher la salle du spectacle".represente.getSalle());
+        System.out.println("Afficher la ville du spectacle".represente.getVille());
+        System.out.println("Afficher la categorie du spectacle".represente.getCategorie());
+        System.out.println("Afficher le prix".represente.getLiee());
+    }
+}
+i++;
+}
+}
+return repre;
+}
+
+public Representation rechercherrepresentationville()
+{ 
+    Salle poss; Representation repre = null;
+    String ville;
+    int i=0;
+
+System.out.println("Saisissez la ville");
+ville=Clavier.lireString();
+
+if (!listerepresentation.isEmpty())
+{
+    while ((i<=listerepresentation.size())&&(repre==null))
+        
+{
+if (listerepresentation.get(i).getPossede().getVille().equalsIgnoreCase(ville))
+    
+{
+    repre=listerepresentation.get(i);
+}
+i++;
+}
+}
+return repre;
+}
+
+
+
+public Representation afficherrepresentationville() //Java Français : 
+        /*
+        
+        */
+
+{
+Representation repre;
+String adresse;
+int i;
+if(repre==null)
+{
+    System.out.println("Cette adresse n'existe pas");
+}
+else
+{
+if (!listerepresentation.isEmpty())
+{
+    for (i=0;i<listerepresentation.size();i++)
+{
+    repre=listerepresentation.get(i);
+
+if (adresse.getAdresse()==repre)
+{
+    System.out.println("Afficher la salle du spectacle".represente.getSalle());
+    System.out.println("Afficher la ville du spectacle".represente.getSpectacle());
+    System.out.println("Afficher la categorie du spectacle".represente.getCategorie());
+    System.out.println("Afficher le prix".represente.getLiee());
+}
+}
+i++;
+}
+}
+    
+}
 }

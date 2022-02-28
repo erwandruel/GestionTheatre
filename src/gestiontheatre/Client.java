@@ -14,7 +14,6 @@ public class Client extends Personne {
     private String login;
     private String motdepasse;
     private String adresse;
-    //Peut-être intégrer la classe Reservation ??? //
     
     public Client(String nm, String prm, String log, String mdp, String ad)
     {

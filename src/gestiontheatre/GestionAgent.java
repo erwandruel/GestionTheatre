@@ -4,12 +4,10 @@
  */
 package gestiontheatre;
 import java.util.*;
-
 /**
  *
  * @author ilonaremy
  */
-
 public class GestionAgent {
     
 private ArrayList<Personne> listepersonne;
@@ -18,6 +16,7 @@ private ArrayList<Personne> listepersonne;
     private ArrayList<Salle> listesalle;
     private ArrayList<Place> listeplace;
     private ArrayList<Reservation> listereservation;
+    private ArrayList<Categorie> listecategorie;
 
     public GestionAgent()
     {
@@ -27,6 +26,7 @@ private ArrayList<Personne> listepersonne;
        listesalle = new ArrayList(); 
        listeplace = new ArrayList(); 
        listereservation = new ArrayList();
+       listecategorie = new ArrayList();
     }    
   
     public void menu()
@@ -57,13 +57,13 @@ private ArrayList<Personne> listepersonne;
             menu();
             break;
             
-           /* case 4 : creerRepresentation();
+            case 4 : creerrepresentation();
             menu();
             break;
             
-            case 5 : creerCategorie();
+            case 5 : creercategorierepresentation();
             menu();
-            break;*/
+            break;
             
             case 6 : annulerRepresentation();
             menu();
@@ -144,7 +144,7 @@ private ArrayList<Personne> listepersonne;
     { int i;
     for (i=0; i<listespectacle.size();i++)
     { repr=listespectacle.get(i);
-    if (repr.getNoms().trim().equalsIgnoreCase(nmsp))     
+    if (repr.getNom().trim().equalsIgnoreCase(nmsp))     
         return repr;
     }
     }
@@ -152,33 +152,100 @@ private ArrayList<Personne> listepersonne;
     } 
     
     
-    public void modifierdatespectacle()
+    public Spectacle modifierdatespectacle()
     {
     String nmsp;
     int ad,md,jd,rep;
-    Date dated;
+    int af,mf,jf;
+    Date dated, datef;
     int i=0;
     Spectacle repr;
     System.out.println("Saisir le nom du spectacle");
     nmsp=Clavier.lireString();
-    System.out.println("Saisir l'année de début du spectable");
-    ad=Clavier.lireInt();
-    System.out.println("Saisir le mois de début du spectable");
-    md=Clavier.lireInt();
-    System.out.println("Saisir le jour de début du spectable");
-    jd=Clavier.lireInt();
-    dated=new Date(ad-1900,md-1,jd);
-    
     repr=rechercherSpectacle();
-    System.out.println("Voulez vous modifier : 1- La date de début ou 2-La date de fin");
+    System.out.println("Voulez vous modifier : 1- La date de début ou 2-La date de fin ou 3-Les deux");
     rep=Clavier.lireInt();
+    
     if (rep==1)
-    {
-    // à continuer    
+    {  
+    System.out.println("La date de début actuelle est : " +repr.getDatedebut());
+    System.out.println("Quelle est la nouvelle année de début ?");
+                ad = Clavier.lireInt(); 
+    System.out.println("Quel est le nouveau mois de début ?");
+                md = Clavier.lireInt();
+    System.out.println("Quel est le nouveau jour de début ?");
+                jd = Clavier.lireInt(); 
+    dated=new Date(ad-1900,md-1,jd);
+                repr.getDatedebut();
+                System.out.println("La nouvelle date de début du spectacle est : " + repr.getDatedebut());
+              }
+    if (rep==2)
+    {  
+    System.out.println("La date de fin actuelle est : " +repr.getDatefin());
+    System.out.println("Quelle est la nouvelle année de fin ?");
+                af = Clavier.lireInt(); 
+    System.out.println("Quel est le nouveau mois de fin ?");
+                mf = Clavier.lireInt();
+    System.out.println("Quel est le nouveau jour de fin ?");
+                jf = Clavier.lireInt(); 
+    datef=new Date(af-1900,mf-1,jf);
+                repr.getDatefin();
+                System.out.println("La nouvelle date de fin du spectacle est : " + repr.getDatefin());
+              }
+    if (rep==3){
+      System.out.println("La date de début actuelle est : " +repr.getDatedebut());
+    System.out.println("Quelle est la nouvelle année de début ?");
+                ad = Clavier.lireInt(); 
+    System.out.println("Quel est le nouveau mois de début ?");
+                md = Clavier.lireInt();
+    System.out.println("Quel est le nouveau jour de début ?");
+                jd = Clavier.lireInt(); 
+    dated=new Date(ad-1900,md-1,jd);
+                repr.getDatedebut();
+                System.out.println("La nouvelle date de début du spectacle est : " + repr.getDatedebut()); 
+    System.out.println("La date de fin actuelle est : " +repr.getDatefin());
+    System.out.println("Quelle est la nouvelle année de fin ?");
+                af = Clavier.lireInt(); 
+    System.out.println("Quel est le nouveau mois de fin ?");
+                mf = Clavier.lireInt();
+    System.out.println("Quel est le nouveau jour de fin ?");
+                jf = Clavier.lireInt(); 
+    datef=new Date(af-1900,mf-1,jf);
+                repr.getDatefin();
+                System.out.println("La nouvelle date de fin du spectacle est : " + repr.getDatefin());            
     }
+    return repr;
+            }  
+    
+    
+    public Representation rechercherrepresentation(int nbrepresentation)
+    { 
+    Representation repre, trouve = null;
+    int i=0;
+
+    System.out.println("Saisissez le numéro de représentation à rechercher");
+    nbrepresentation=Clavier.lireInt();
+
+    if (!listerepresentation.isEmpty())
+    {
+      while(i<listerepresentation.size()&& trouve == null)
+        
+    {
+        repre=listerepresentation.get(i);
+        if(repre.getNbrepresentation()== nbrepresentation)
+    
+    {
+      trouve = repre;
+    } 
+    i++;
+    }
+    }
+    return trouve;
+
     }
     
-    public void annulerRepresentation() // peut être besoin de créer un atrribut 'annule' dans la classe representation
+    
+    public void annulerRepresentation() // peut être besoin de créer un attribut 'annule' dans la classe representation
     {
      Representation r;
      int ade,mde,jde;
@@ -194,7 +261,7 @@ private ArrayList<Personne> listepersonne;
      jde=Clavier.lireInt();
      datede=new Date(ade-1900,mde-1,jde);
     
-     r=rechercherRepresentation(); //créer la méthode rechercherReprésentation (théo)
+     r=rechercherrepresentation(nbrepresentation); 
      int j=0;
      int i =0;
      String reponse;
@@ -203,10 +270,9 @@ private ArrayList<Personne> listepersonne;
      reponse=Clavier.lireString();
      if (reponse.equals("o")|| (reponse.equals("O")))
      {
-         ga.annulerepresentation(r); // à voir selon les différentes classes gestion que l'on va créer
          System.out.println("Donnez le numéro de représentation");
          nbrepresentation=Clavier.lireInt();
-         r=rechercherRepresentation;
+         r=rechercherrepresentation(nbrepresentation);
          System.out.println("La représentation est annulée");
      }
      else 
@@ -216,9 +282,31 @@ private ArrayList<Personne> listepersonne;
     }    
     
     
+    
     public double calculermontantspect() //Ilo
     {
-        
+    double mt=0;
+    Reservation r;
+    Spectacle repr;
+    int j=0, i=0;
+    String rep;
+    if (repr.getListereservation().isEmpty()){
+        while(j<repr.getListereservation().size()){
+        repr=repr.getListereservation().get(i); 
+        System.out.println("Quelle catégorie?:"); 
+        rep=Clavier.lireString();
+        while((i<v.getCla().size())){ // ici besoin d'une classe catégorie je pense
+            cat=repr.getCat().get(i); // importer la catégorie dans la partie spectacle 
+            if(r.getListereservation().contains(v) && cat.getLibelle().equalsIgnoreCase(rep)){
+            mt=mt+(cat.getPrix()*r.getNbplaces()); // ajouter un nombre de place dans réservation poir pouvoir faire le calcul
+            }
+            i++;
+        }
+        j++;
+    }           
+    }       
+    return mt;   
+    
     }
            
     
@@ -235,4 +323,73 @@ private ArrayList<Personne> listepersonne;
         a.menu();
     }
      
+     
+         public Representation creerrepresentation()
+{
+    Representation repre;
+    Salle poss; 
+    Spectacle represente;
+    Date dated,datef;
+
+
+    int jd, md, ad; int jf, mf, af;
+    String nom, adresse, ville; int capacite;
+    String spec;
+
+  
+    System.out.println("Saisir la date de début jj puis mm puis aaaa ?");
+                jd = Clavier.lireInt(); 
+    System.out.println("Quel est le nouveau mois de début ?");
+                md = Clavier.lireInt();
+    System.out.println("Quel est l'année de début ?");
+                ad = Clavier.lireInt(); 
+    dated=new Date(ad-1900,md-1,jd);
+    
+    System.out.println("Saisir la date de fin jj puis mm puis aaaa ?");
+                jf = Clavier.lireInt(); 
+    System.out.println("Quel est le nouveau mois de fin ?");
+                mf = Clavier.lireInt();
+    System.out.println("Quel est l'année de fin ?");
+                af = Clavier.lireInt(); 
+    datef=new Date(af-1900,mf-1,jf);
+    
+
+    System.out.println("Saisir le nom de la salle ");
+    nom=Clavier.lireString();
+    
+    System.out.println("Saisir l'adresse de la salle ");
+    adresse=Clavier.lireString();
+    
+    System.out.println("Saisir la ville de la salle ");
+    ville=Clavier.lireString();
+    
+    System.out.println("Saisir la capacité de la salle ");
+    capacite=Clavier.lireInt();
+    
+    poss= new Salle(nom, adresse, ville, capacite);
+    listesalle.add(poss); 
+    
+    System.out.println("A quel Spectacle est-elle reliée ?");
+    spec=Clavier.lireString();
+    spec=rechercherspectacle();
+    // Il faut créer la méthode rechercherspectacle afin de reliée la représentation au spectacle
+
+    repre= new Representation(dated, datef,spec, poss );
+    // On ajoute la nouvelle representation qui possède une date de début, de fin, reliée à un spectable et à une salle défini
+}
+         
+public Representation creercategorierepresentation()
+    {
+        String lib; double prx;
+        Categorie c;
+        Salle poss = null;
+   
+            System.out.println("Quel est le libellé de la catégorie ?");
+            lib=Clavier.lireString();
+            System.out.println("Quelle est le prix de cette catégorie ?");
+            prx=Clavier.lireDouble();
+
+            c= new Categorie(lib, prx, poss); 
+            listecategorie.add(c);     
+    }
 }

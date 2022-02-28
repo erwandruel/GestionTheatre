@@ -20,6 +20,7 @@ public class Salle {
     {
         nom = nm;
         adresse = ad;
+        ville = v;
         capacite = cap;
     }
 

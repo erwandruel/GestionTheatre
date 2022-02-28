@@ -15,7 +15,7 @@ public class Place {
     private String categorie;
     private String emplacement;
     private Salle compose;
-    private int nombre; //Rajout de nb pour la méthode modifierreservation pour rajouter un nouveau nombre de place, but dont work
+    private int nombre; //Rajout de nb pour la méthode modifierreservation pour rajouter un nouveau nombre de place, mais ça ne fonctionne pas
     // Peut-être intégrer la classe Reservation ??? //
     
     public Place(float p, String cat, String emp, Salle comp, int nb)
