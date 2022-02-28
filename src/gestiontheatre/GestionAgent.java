@@ -306,7 +306,24 @@ private ArrayList<Personne> listepersonne;
     }           
     }       
     return mt;   
+    /*
+        Pour calculer le montant des réservations pour un spectacle, nous avons besoin :
+        D’une variable montant de type double que nous initialiserons à 0
+        De la classe réservation pour obtenir les informations sur les réservations comme le nombre de réservation
+        De la classe spectacle pour pouvoir obtenir un spectacle donné
+        De la classe place pour obtenir le prix diffère selon les catégories choisies
+        Il faudra tout d’abord demander à l’agent de saisir le numéro de spectacle 
+        pour pouvoir calculer le montant total des réservations associées à ce spectacle. 
+        Ce numéro de spectacle sera recherché dans la liste des réservations. 
     
+        Le système vérifie que le numéro de spectacle saisi est bien présent dans la liste de réservation avec un if. 
+        S’il existe, le système demandera à l’agent de saisir la catégorie associée à chaque numéro de réservation. 
+        Ensuite, il faut que le spectacle soit présent dans la liste du spectacle et qu’il soit associé à la catégorie saisie selon son libellé.
+
+        Dans ce cas, nous pouvons calculer le montant qui sera égal au prix de la catégorie présent 
+        dans la classe place multiplié par le nombre de places présent dans la classe réservation. 
+        A la fin, la méthode nous retourne le montant associé pour le spectacle donné.
+    */
     }
            
     
