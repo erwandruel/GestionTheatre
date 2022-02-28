@@ -10,6 +10,7 @@ import java.util.*;
  *
  * @author Erwan
  */
+
 public class GestionTheatre {
 
     private ArrayList<Personne> listepersonne;
@@ -106,7 +107,16 @@ public class GestionTheatre {
         if(!nouveaumdp.equals(ancienmdp))
         {
             c.setMotdepasse(nouveaumdp);
-            // Etant donné que le nouveau mot de passe n'est pas égal à l'ancien, alors on modifie le mot de passe. 
+            
+            /* 
+            Ici on cherche à modifier le mot de passe actuel. 
+            Etant donné que le nouveau mot de passe n'est pas égal au mot de passe actuel, 
+            alors on modifie l'actuel mot de passe pour qu'il soit égale au nouveau mot de passe
+            
+            Pour celà on set le mot de passe qui est dans la classe Client du client en question pour y attribuer le nouveau mot de passe
+            Si le client tape un mot de passe identique, il est alors redirigé vers le menu en lui indiquant 
+            qu'il ne peut pas modifier son mot de passe actuel avec le même mot de passe
+            */
         }
         else
         {
@@ -119,7 +129,7 @@ public class GestionTheatre {
     {
         String nom, adresse; Place liee;
         Reservation r; 
-        String prm;
+        String prm, rep;
         int numero;
         
         System.out.println("Quel est le nom de la réservation ?");
@@ -128,14 +138,38 @@ public class GestionTheatre {
         adresse=Clavier.lireString();
         System.out.println("Quelle est le prénom du client ?");
         prm=Clavier.lireString();
-        
-        System.out.println(liee.getPrix());
-        
         System.out.println("Saisir le numéro de la place à réserver");
         numero=Clavier.lireInt();
+        /* Ici on demande à nouveau au client s'il veut réserver d'autres places, 
+        si oui alors on lui redemande de saisir le numéro de la place et ainsi de suite jusqu'à ce qu'il ne veuille plus.
+        Pour celà on pourrait mettre en place un if qui s'arrêterait au moment où le client ne souhaite plus 
+        réserver de nouvelles places. On lui demande alors de confirmer le nombre de total de places réservées.         
+        */
         
+        System.out.println("Veuillez saisir le nombre de place total réservée pour confirmation");
+        nbplacesresa=Clavier.lireInt();
+        
+        System.out.println(liee.getPrix());
+        /* 
+        On chercher ensuite à afficher le prix correspondant à la réservation demandé.
+        Le prix varie en fonction du nombres de places et de la catégorie de la place.
+        Une fois la réservation presque complété on affiche le prix de celle-ci au client 
+        */
+        
+        System.out.println("Confirmez-vous la réservation ? O/N");
+        rep=Clavier.lireString();
+        
+        if(rep.equalsIgnoreCase("o"))
+        {
+        r=new Reservation(nom, adresse, liee);
         listereservation.add(r);
-        // Je ne sais pas comment intégrer le prix et la place 
+        }
+        else
+        {
+            System.out.println("Vous avez décidé de refuser la réservation, vous allez être redirigé au menu");
+            menu();
+        }
+
     }  
     
     public void modifierreservation()
@@ -162,13 +196,23 @@ public class GestionTheatre {
             System.out.println("Combien de places voulez-vous dans votre nouvelle réservation ?");
             rep=Clavier.lireInt();
             
-            if(rep != nb) // Si le nouveau nombre de réservation est différent alors on modifie la réservation pour avoir le nouveau nombre de places
+            if(rep != nb)
+                /*
+                Si le nouveau nombre de réservation est différent alors on modifie 
+                la réservation pour avoir le nouveau nombre de places.
+                
+                */
             {
-                r.setLiee().setNombre(rep); //Modification du nombre de placé reservé dans la réservation
+                r.setLiee().setNombre(rep); 
+                /*
+                On modifie alors le nombre de places reservées dans la réservation pour celà on va chercher
+                le nombre de place qui est dans la classe Place depuis la classe Reservation.
+                */
             }
         else
         {
-            menu();
+            System.out.println("Vous aviez déjà ce nombre de places dans votre réservatoin, veuillez réessayer");
+            modifierreservation();
         }   
         
     }

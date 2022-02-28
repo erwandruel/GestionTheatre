@@ -12,17 +12,16 @@ package gestiontheatre;
 public class Place {
     
     private float prix;
-    private String categorie;
-    private String emplacement;
+    private Categorie emplacement;
     private Salle compose;
-    private int nombre; //Rajout de nb pour la méthode modifierreservation pour rajouter un nouveau nombre de place, mais ça ne fonctionne pas
+    private int nombre; 
+    //Rajout de nb pour la méthode modifierreservation pour rajouter un nouveau nombre de place, mais ça ne fonctionne pas
     // Peut-être intégrer la classe Reservation ??? //
     
-    public Place(float p, String cat, String emp, Salle comp, int nb)
+    public Place(float p, Categorie cat, Salle comp, int nb)
     {
         prix = p;
-        categorie = cat;
-        emplacement = emp;
+        emplacement = cat;
         compose = comp;
         nombre = nb;
     }
@@ -31,13 +30,10 @@ public class Place {
         return prix;
     }
 
-    public String getCategorie() {
-        return categorie;
-    }
-
-    public String getEmplacement() {
+    public Categorie getEmplacement() {
         return emplacement;
     }
+
 
     public Salle getCompose() {
         return compose;
@@ -52,13 +48,10 @@ public class Place {
         this.prix = prix;
     }
 
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-
-    public void setEmplacement(String emplacement) {
+    public void setEmplacement(Categorie emplacement) {
         this.emplacement = emplacement;
     }
+
 
     public void setCompose(Salle compose) {
         this.compose = compose;
